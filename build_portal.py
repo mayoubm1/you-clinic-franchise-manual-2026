@@ -140,6 +140,34 @@ for f in sorted(glob.glob(SRC_PAT)):
 
 chapters.sort(key=lambda c: c["n"])
 
+# CI / clean-machine fallback: the original Gemini sources live at CH_OSRC (outside
+# the repo, only present on this machine). When they are missing, rebuild from the
+# already-cleaned modular copies committed under chapters/ so builds are reproducible
+# anywhere (GitHub Actions runner, other machines).
+if not chapters:
+    print("source chapters not found (%s) -> using committed chapters/" % CH_OSRC)
+    for f in sorted(glob.glob(os.path.join(BASE, "chapters", "*-chapter.html"))):
+        raw = io.open(f, encoding="utf-8", errors="replace").read()
+        num = int(re.search(r"(\d+)-chapter\.html", os.path.basename(f)).group(1))
+        title_m = re.search(r"<title>(.*?)</title>", raw, re.I | re.S)
+        title = re.sub(r"<[^>]+>", "", title_m.group(1)).strip() if title_m else "Chapter %d" % num
+        css_m = re.search(r"<style[^>]*>([\s\S]*?)</style>", raw, re.I)
+        css = css_m.group(1) if css_m else ""
+        body_m = re.search(r"<body[^>]*>([\s\S]*?)</body>", raw, re.I)
+        body = body_m.group(1).strip() if body_m else raw
+        h1_m = re.search(r"<h1[^>]*>([\s\S]*?)</h1>", body, re.I)
+        h1 = re.sub(r"<[^>]+>", "", h1_m.group(1)).strip() if h1_m else title
+        chapters.append({
+            "n": num,
+            "title": title,
+            "h1": h1,
+            "css": css,
+            "body": body,
+            "src": os.path.basename(f),
+            "scss": _scope(css, "#ch%d" % num),
+        })
+    chapters.sort(key=lambda c: c["n"])
+
 # ---------------------------------------------------------------------------- 3D widget injection
 WIDGET = ('<div class="asbuilt-3d-widget" data-gltf-src="assets/models/facility-as-built.gltf">'
           '<div class="hud-3d-overlay">'
