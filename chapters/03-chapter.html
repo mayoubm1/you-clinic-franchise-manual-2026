@@ -1,0 +1,742 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CHAPTER 3: HEALTH DATA GOVERNANCE, CYBERSECURITY &amp; HEALTH-TECH INFRASTRUCTURE</title><style>
+        :root {
+            --bg-dark: #080a09;
+            --bg-card: #101412;
+            --bg-card-hover: #161b18;
+            --border-color: rgba(197, 160, 89, 0.22);
+            --border-glow: rgba(197, 160, 89, 0.45);
+            --gold-primary: #c5a059;
+            --gold-light: #e5c889;
+            --gold-dark: #8c6d32;
+            --emerald-deep: #0a2218;
+            --emerald-accent: #1e4d38;
+            --text-main: #f0f2f1;
+            --text-muted: #a3b0a9;
+            --text-dim: #6c7a72;
+            --danger-color: #d9534f;
+            --warning-color: #f0ad4e;
+            --success-color: #5cb85c;
+            --font-header: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-arabic: 'Tajawal', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            font-size: 15px;
+            letter-spacing: 0.01em;
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* HEADER & BRAND BAR */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .brand-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed rgba(197, 160, 89, 0.15);
+        }
+
+        .brand-seal {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.15) 0%, rgba(10, 34, 24, 0.4) 100%);
+            border: 1px solid var(--gold-primary);
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        .doc-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .header-title-area {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .brand-logo-text {
+            font-family: var(--font-header);
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+        }
+
+        .brand-subhead {
+            font-family: var(--font-header);
+            font-size: 16px;
+            letter-spacing: 0.2em;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .manual-version-badge {
+            display: inline-block;
+            background: var(--emerald-deep);
+            color: var(--gold-light);
+            border: 1px solid var(--border-color);
+            padding: 4px 18px;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        /* BANNER */
+        .motto-banner {
+            background: linear-gradient(180deg, rgba(16, 20, 18, 0.9) 0%, rgba(10, 34, 24, 0.6) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 28px 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .motto-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 150px; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+        }
+
+        .heritage-tag {
+            font-size: 12px;
+            color: var(--gold-light);
+            letter-spacing: 0.12em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .hero-statement {
+            font-size: 15px;
+            color: var(--text-main);
+            max-width: 920px;
+            margin: 0 auto 16px auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .motto-quote {
+            font-family: var(--font-header);
+            font-size: 18px;
+            color: var(--gold-primary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding-top: 12px;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        /* GRID LAYOUTS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        /* CARDS & PANELS */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-glow);
+            background-color: var(--bg-card-hover);
+        }
+
+        .card-header-title {
+            font-family: var(--font-header);
+            font-size: 16px;
+            color: var(--gold-primary);
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge-tier {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .badge-tier-a { background: rgba(92, 184, 92, 0.15); color: #5cb85c; border: 1px solid rgba(92, 184, 92, 0.3); }
+        .badge-tier-b { background: rgba(240, 173, 78, 0.15); color: #f0ad4e; border: 1px solid rgba(240, 173, 78, 0.3); }
+        .badge-tier-c { background: rgba(217, 83, 79, 0.15); color: #d9534f; border: 1px solid rgba(217, 83, 79, 0.3); }
+
+        /* SECTION HEADINGS */
+        .section-header {
+            margin: 48px 0 24px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0;
+            width: 80px; height: 2px;
+            background: var(--gold-primary);
+        }
+
+        .section-title {
+            font-family: var(--font-header);
+            font-size: 24px;
+            color: #ffffff;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+        }
+
+        /* ARABIC TEXT STYLING */
+        .ar-text {
+            font-family: var(--font-arabic);
+            direction: rtl;
+            text-align: right;
+            color: #d1dcd5;
+            font-size: 14px;
+            line-height: 1.8;
+            background: rgba(0, 0, 0, 0.25);
+            padding: 10px 14px;
+            border-radius: 4px;
+            border-right: 2px solid var(--gold-primary);
+            margin-top: 12px;
+        }
+
+        /* DIAGRAM BOX */
+        .diagram-container {
+            background-color: #050706;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: var(--gold-light);
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.45;
+            margin: 20px 0;
+        }
+
+        /* CUSTOM TABLES */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 24px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: var(--emerald-deep);
+            color: var(--gold-light);
+            font-family: var(--font-header);
+            letter-spacing: 0.08em;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            color: var(--text-muted);
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(16, 20, 18, 0.5);
+        }
+
+        tr:hover {
+            background-color: rgba(197, 160, 89, 0.05);
+        }
+
+        /* AUDIT DOMAIN CARD DETAILS */
+        .domain-box {
+            background: rgba(16, 20, 18, 0.8);
+            border-left: 3px solid var(--gold-primary);
+            padding: 18px;
+            margin-bottom: 20px;
+            border-radius: 0 6px 6px 0;
+        }
+
+        .domain-title {
+            font-family: var(--font-header);
+            font-size: 15px;
+            color: #ffffff;
+            margin-bottom: 6px;
+        }
+
+        .status-pill {
+            display: inline-block;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 3px;
+            margin-right: 6px;
+            text-transform: uppercase;
+        }
+
+        .status-achieved { background: rgba(92, 184, 92, 0.2); color: #5cb85c; }
+        .status-minor { background: rgba(240, 173, 78, 0.2); color: #f0ad4e; }
+        .status-critical { background: rgba(217, 83, 79, 0.2); color: #d9534f; }
+
+        /* FOOTER */
+        footer {
+            margin-top: 80px;
+            padding: 32px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gold-primary);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .brand-logo-text { font-size: 26px; }
+            .section-title { font-size: 20px; }
+            .motto-banner { padding: 20px; }
+            .container { padding: 20px 16px; }
+        }
+    </style></head><body><div class="container">
+
+    <!-- HEADER BAR -->
+    <header>
+        <div class="brand-top-bar">
+            <div class="brand-seal">
+                <span>✦ Sealed Global Standard</span>
+            </div>
+            <div class="doc-meta">
+                Ref: EXT-VAL-2026-003 | Flagship: Kempinski Hotel, Mall of the Emirates, Dubai
+            </div>
+        </div>
+
+        <div class="header-title-area">
+            <div class="brand-logo-text">You Wellness Clinic</div>
+            <div class="brand-subhead">Global Standard Franchise Manual</div>
+            <div class="manual-version-badge">V2.1.4 Elite Unified - Chapter 3: Health Data Governance, Cybersecurity &amp; Health-Tech Infrastructure</div>
+        </div>
+    </header>
+
+    <!-- MOTTO BANNER -->
+    <section class="motto-banner">
+        <div class="heritage-tag">Health-Tech Architecture · Zero-Trust Encryption · Ethical AI Governance</div>
+        <p class="hero-statement">
+            Uniting real-time bio-telemetry, zero-trust cloud data vaults, and regulated AI clinical decision support into a legally enforceable, hyper-secure digital health framework built for ultra-high-net-worth individual (HNWI) data sovereignty and precision longevity.
+        </p>
+        <div class="motto-quote">
+            "Backed by Data. Built for Complexity. Designed for You."
+        </div>
+    </section>
+
+    <!-- CHAPTER 3 MAIN CONTENT -->
+    <main>
+        <div class="section-header">
+            <h1 class="section-title">CHAPTER 3: HEALTH DATA GOVERNANCE, CYBERSECURITY &amp; HEALTH-TECH INFRASTRUCTURE</h1>
+            <div class="section-subtitle">Unabridged Master Specifications · You Wellness Clinic Franchise Standard</div>
+        </div>
+
+        <!-- 3.1 DIGITAL HEALTH-TECH ECOSYSTEM ARCHITECTURE -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                3.1 Digital Health-Tech Ecosystem Architecture
+            </h2>
+            <div class="card" style="margin-bottom: 20px;">
+                <p style="margin-bottom: 16px;">
+                    To deliver continuous, hyper-personalized longevity interventions, <strong>You Wellness Clinic</strong> operates an integrated, high-concurrency, zero-trust digital infrastructure connecting patient real-world sensor streams directly to clinical decision support networks and centralized AI predictive engines.
+                </p>
+
+                <!-- DIAGRAM -->
+                <div class="diagram-container">
+YOU WELLNESS CLINIC DIGITAL ARCHITECTURE
+
+[Patient Real-World Stream] ----------> [Zero-Trust API Gateway / Spike Integration]
+• CGMs (Dexcom / FreeStyle Libre)      ├── Real-Time Normalization Layer
+• Continuous ECG & HRV Telemetry       └── De-identification Engine
+• Epigenetic & Biomarker Wearables     │
+                                       ▼
+[Clinical Edge / Local Clinic Node] <======> [HQ Centralized Longevity Core]
+├── Local FHIR Engine / FHIR Store     ├── Predictive AI & Biological Age Engine
+├── Encrypted Local Diagnostic Caching ├── Federated Learning Network (Privacy-Safe)
+└── Real-Time Emergency Alert Logic    └── Multi-Jurisdiction Vault (GDPR/HIPAA/NDMO)
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-title">🌐 Interoperability Standard</div>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">
+                        Built strictly on <strong>Fast Healthcare Interoperability Resources (HL7 FHIR v4)</strong> and <strong>SMART-on-FHIR</strong> interfaces to guarantee frictionless, standardized data exchange with global hospital networks, diagnostic laboratories, and mobile health ecosystems.
+                    </p>
+                    <div class="ar-text">
+                        معيار التوافقية الرقمية: يعتمد النظام كلياً على بروتوكول HL7 FHIR v4 وواجهات SMART-on-FHIR لضمان تبادل البيانات بشكل آمن وسلس مع المستشفيات والمختبرات العالمية.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">💾 Edge Data Caching</div>
+                    <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 12px;">
+                        Every local clinic node runs a localized, encrypted FHIR cache capable of operating completely offline during external network outages, ensuring uninterrupted clinical intake, local diagnostics, and immediate treatment execution.
+                    </p>
+                    <div class="ar-text">
+                        التخزين المؤقت في العقد المحلية: تعمل كل عيادة محلياً بنظام FHIR مشفر يتيح استمرار العمليات التشخيصية والعلاجية دون انقطاع حتى في حالات انقطاع الإنترنت.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.2 CONTINUOUS BIO-TELEMETRY & WEARABLE INTEGRATION -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                3.2 Continuous Bio-Telemetry, Wearable Integration &amp; Data Normalization
+            </h2>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
+                Proactive longevity medicine requires moving from static "snapshot" clinical visits to continuous biological monitoring and automated alert escalation:
+            </p>
+
+            <div class="card" style="margin-bottom: 24px;">
+                <div class="card-header-title">1. Unified IoT Integration &amp; Sensor Aggregation (Spike API)</div>
+                <div style="font-size: 14px; color: var(--text-muted); line-height: 1.7;">
+                    <p style="margin-bottom: 10px;">
+                        <strong>Supported Sensor Categories:</strong> Continuous Glucose Monitors (CGM — Dexcom, Abbott FreeStyle Libre), smart rings (HRV, continuous core temperature, sleep architecture), multi-lead ECG patches, and bio-impedance body composition monitors.
+                    </p>
+                    <p>
+                        <strong>Normalized Telemetry Pipeline:</strong> Continuous raw telemetry streams are aggregated via HIPAA/GDPR-compliant IoT API abstraction layers (Spike API Integration), transforming disparate vendor data formats into unified, time-series FHIR <code>Observation</code> resources in real time.
+                    </p>
+                </div>
+            </div>
+
+            <h3 style="font-family: var(--font-header); font-size: 16px; color: var(--gold-primary); margin-bottom: 16px;">
+                2. Automated Clinical Anomaly Thresholds &amp; Multi-Tier Safety Alerts
+            </h3>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                The system applies deterministic safety thresholds to continuous streams (e.g., sustained nocturnal hypoglycemia &lt;54 mg/dL, acute resting heart rate spikes &gt;120 bpm without physical activity, or severe arrhythmia flags).
+            </p>
+
+            <div class="grid-3">
+                <!-- TIER A -->
+                <div class="card">
+                    <span class="badge-tier badge-tier-a">Tier A: Non-Acute Trend</span>
+                    <h4 style="font-family: var(--font-header); font-size: 15px; color: #fff; margin-bottom: 10px;">Dashboard Review</h4>
+                    <p style="font-size: 13px; color: var(--text-muted);">
+                        Highlighted in the patient's daily longevity dashboard and flagged for routine review during the next scheduled clinical consultation.
+                    </p>
+                </div>
+
+                <!-- TIER B -->
+                <div class="card">
+                    <span class="badge-tier badge-tier-b">Tier B: Acute Anomaly</span>
+                    <h4 style="font-family: var(--font-header); font-size: 15px; color: #fff; margin-bottom: 10px;">Urgent Team Task</h4>
+                    <p style="font-size: 13px; color: var(--text-muted);">
+                        Triggers an automated push notification to the patient and generates an urgent priority task in the local clinic care team's dashboard.
+                    </p>
+                </div>
+
+                <!-- TIER C -->
+                <div class="card" style="border-color: rgba(217, 83, 79, 0.4);">
+                    <span class="badge-tier badge-tier-c">Tier C: Critical Hazard</span>
+                    <h4 style="font-family: var(--font-header); font-size: 15px; color: var(--danger-color); margin-bottom: 10px;">24/7 Desk Escalation</h4>
+                    <p style="font-size: 13px; color: var(--text-muted);">
+                        Directly escalates to the clinic's 24/7 Medical Response Desk. If unacknowledged within <strong>5 minutes</strong>, triggers an automated emergency telephone outreach protocol.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.3 ARTIFICIAL INTELLIGENCE DIAGNOSTICS & SaMD -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                3.3 Artificial Intelligence Diagnostics, SaMD &amp; Algorithmic Change Control
+            </h2>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
+                The clinic utilizes proprietary and integrated Artificial Intelligence / Machine Learning (AI/ML) engines for biological age modeling, predictive biomarker trajectory planning, and diagnostic pattern recognition.
+            </p>
+
+            <div class="card" style="margin-bottom: 20px;">
+                <!-- AI DIAGRAM -->
+                <div class="diagram-container">
+AI SOFTWARE AS A MEDICAL DEVICE (SaMD) PIPELINE
+
+[Continuous Telemetry & Biomarkers] ──> [AI Diagnostic / Longevity Engine]
+                                               │
+                                               ▼
+                                  [Clinical Decision Support (CDS)]
+                                               │
+                                               ▼
+                                 [Human-in-the-Loop Oversight]
+                                  ├── Mandatory Physician Sign-Off
+                                  ├── Model Explainability Matrix (SHAP)
+                                  └── Algorithmic Drift Monitoring
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-title">⚖️ 1. Regulatory Alignment (FDA SaMD &amp; EU AI Act)</div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+                        <li style="margin-bottom: 8px;">
+                            <strong>Class II/III SaMD Compliance:</strong> All predictive diagnostic modules operate as regulated Software as a Medical Device. In EU and GCC jurisdictions, architectures comply with EU MDR and EU AI Act High-Risk AI System Requirements (subgroup bias assessments, data governance, oversight).
+                        </li>
+                        <li>
+                            <strong>Predetermined Change Control Plans (PCCP):</strong> AI models operate under FDA-aligned PCCP frameworks. Model retraining protocols, parameter shift boundaries, and quantitative acceptance criteria are pre-approved by regulatory authorities prior to deployment.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">🧑‍⚕️️ 2. Human-in-the-Loop (HITL) Medical Decision Support</div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+                        <li style="margin-bottom: 8px;">
+                            <strong>Non-Autonomous Mandate:</strong> AI algorithms operate exclusively as Clinical Decision Support (CDS) tools. Under no circumstances may an AI engine autonomously issue prescriptions, order invasive diagnostics, or alter Tier 2/3 protocols without explicit physician sign-off.
+                        </li>
+                        <li>
+                            <strong>Model Explainability &amp; Transparency:</strong> Every AI risk score or protocol suggestion displays an explainability card (SHAP/LIME feature attributions) detailing physiological drivers (e.g., elevated hs-CRP, reduced sleep efficiency, epigenetic methylation shifts).
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.4 PRIVACY, ZERO-KNOWLEDGE VAULTS & ENCRYPTION -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                3.4 Cross-Border Health Data Privacy, Zero-Knowledge Vaults &amp; Encryption
+            </h2>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
+                Because You Wellness Clinic serves a global, highly mobile clientele (including HNWIs and public figures), patient data privacy must exceed traditional statutory baselines:
+            </p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-title">🌍 Multi-Jurisdiction Regulatory Architecture</div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+                        <li style="margin-bottom: 8px;">
+                            <strong>Strict Sovereignty Compliance:</strong> Fully harmonized with US HIPAA/HITECH, EU/UK GDPR, UAE Health Data Law (Federal Law No. 2 of 2019), KSA NDMO/PDPL, and global cross-border transfer regulations.
+                        </li>
+                        <li>
+                            <strong>Local Sovereignty Anchors:</strong> Patient Identifiable Information (PII) and Protected Health Information (PHI) are stored in localized, in-country cloud data centers (local AWS/Azure sovereign regions) where mandated.
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">🔐 Zero-Knowledge Encryption &amp; Pseudonymization</div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+                        <li style="margin-bottom: 8px;">
+                            <strong>Dual-Vault Database Splitting:</strong> Personal Identifiers (Name, Government ID, Payment) are cryptographically severed from Clinical &amp; Telemetry Data.
+                        </li>
+                        <li style="margin-bottom: 8px;">
+                            <strong>Encryption Standards:</strong> Data at rest is encrypted using <strong>AES-256-GCM</strong>; data in transit utilizes <strong>TLS 1.3</strong> with Perfect Forward Secrecy.
+                        </li>
+                        <li>
+                            <strong>Zero-Knowledge Architecture:</strong> HQ central analytics engines process longevity profiles using randomized zero-knowledge hashes. HQ researchers and AI models never have access to raw PII.
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.5 AUDITING & CYBER INCIDENT RESPONSE -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                3.5 Global Health-Tech Auditing, Cyber Incident Response &amp; Legal Penalties
+            </h2>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
+                A security breach or algorithmic malfunction threatens both patient safety and global brand trust. All franchisees are held to strict digital compliance standards:
+            </p>
+
+            <div class="card" style="margin-bottom: 20px;">
+                <div class="card-header-title">🛡️ Cybersecurity &amp; Health-Tech Audit Schedule</div>
+                <div style="font-size: 13px; color: var(--text-muted); line-height: 1.7;">
+                    <p style="margin-bottom: 8px;">
+                        <strong>Quarterly Automated Vulnerability Assessment:</strong> Penetration testing and API security audits conducted by HQ-approved third-party cybersecurity firms.
+                    </p>
+                    <p>
+                        <strong>Continuous SOC 2 Type II Monitoring:</strong> Automated verification of access controls, zero-trust network configurations, and database encryption logs.
+                    </p>
+                </div>
+            </div>
+
+            <!-- DOMAIN A & B -->
+            <div class="domain-box">
+                <div class="domain-title">Domain A: Unapproved Software, Unauthorized Integrations &amp; Shadow IT</div>
+                <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">
+                    <strong>Protocol Requirement:</strong> Franchisees must exclusively utilize HQ-authorized EHR systems, SMART-on-FHIR apps, and IoT API connectors. Third-party plugins, unvetted AI tools, or local patient databases are strictly prohibited.
+                </div>
+                <div style="font-size: 13px; line-height: 1.6;">
+                    <p style="margin-bottom: 6px;">
+                        <span class="status-pill status-minor">Minor Non-Compliance</span> Unapproved non-clinical administrative scheduling tool utilized by local staff. <em>Remedy:</em> Immediate software disconnection; CAPA plan issued with 7-day resolution window.
+                    </p>
+                    <p>
+                        <span class="status-pill status-critical">Critical Violation / Breach</span> Connecting unvetted third-party diagnostic software or unencrypted external databases to the core network. <em>Remedy:</em> Immediate remote credential revocation by HQ Security; Notice of Critical Breach with 48-hour mandatory Cure Period + security re-audit fee. Failure to isolate results in immediate franchise license revocation.
+                    </p>
+                </div>
+            </div>
+
+            <div class="domain-box">
+                <div class="domain-title">Domain B: Patient Data Privacy Violations &amp; Data Leaks</div>
+                <div style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">
+                    <strong>Protocol Requirement:</strong> Absolute adherence to zero-knowledge vaulting, role-based access control (RBAC), and mandatory Multi-Factor Authentication (MFA) across 100% of staff accounts.
+                </div>
+                <div style="font-size: 13px; line-height: 1.6;">
+                    <p style="margin-bottom: 6px;">
+                        <span class="status-pill status-minor">Minor Non-Compliance</span> Failure of a staff member to complete annual cybersecurity training, or delayed offboarding (&gt;12 hours) of a departed employee. <em>Remedy:</em> Automated user credential suspension; $1,000 fine per un-offboarded account, remediable within 24 hours.
+                    </p>
+                    <p>
+                        <span class="status-pill status-critical">Critical Violation</span> Unauthorized export or sale of patient records, credential sharing leading to preventable data exposure, or failure to log a cybersecurity incident within <strong>2 hours of detection</strong>. <em>Remedy:</em> Immediate activation of HQ Cyber Step-In Protocol. HQ takes control of local IT systems, isolates nodes, and handles statutory notifications. Franchisee pays liquidated damages covering forensic and legal costs + critical breach fine. Intentional misconduct results in immediate termination for cause.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3.6 PENALTIES MATRIX -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                3.6 Digital Health Compliance &amp; Cybersecurity Penalties Matrix
+            </h2>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Breach Tier</th>
+                            <th>Cure Period</th>
+                            <th>Financial &amp; Operational Remedy</th>
+                            <th>Contractual Consequence</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong style="color: var(--warning-color);">Minor IT Deficit</strong></td>
+                            <td>7 Days</td>
+                            <td>System Disconnection + CAPA Re-Audit Fee</td>
+                            <td>Escalation to Critical Audit Breach</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: var(--danger-color);">Critical Tech Breach</strong></td>
+                            <td>48 Hours</td>
+                            <td>Remote Access Revocation + $10,000 Fine</td>
+                            <td>Franchise Operational Suspension</td>
+                        </tr>
+                        <tr>
+                            <td><strong style="color: #d9534f;">Zero-Day / Data Leak</strong></td>
+                            <td>Immediate (0 Days)</td>
+                            <td>HQ Cyber Step-In + Forensics Assessment</td>
+                            <td>Contract Termination + Liquidated Damages &amp; Legal Action</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="motto-banner" style="margin-top: 32px; padding: 20px;">
+                <p style="font-size: 14px; color: var(--gold-light); margin: 0; font-style: italic;">
+                    "This chapter establishes a forward-looking digital architecture—uniting continuous bio-telemetry, ethical AI decision support, zero-trust cybersecurity, and global privacy compliance into a legally enforceable framework."
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.youclinic.co" target="_blank">Official Website</a>
+            <span>•</span>
+            <a href="#">Kempinski Hotel Flagship</a>
+            <span>•</span>
+            <a href="#">Health-Tech Portal</a>
+        </div>
+        <div>
+            © 2026 YOU WELLNESS CLINIC. All rights reserved. Global Standard Franchise Manual V2.1.4 Elite Unified.<br>
+            Sealed Digital Architecture &amp; Data Governance Blueprint.
+        </div>
+    </footer>
+
+</div></body></html>

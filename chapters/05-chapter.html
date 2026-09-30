@@ -1,0 +1,841 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CHAPTER 5: ARCHITECTURAL SPECS, FACILITY DESIGN &amp; ENVIRONMENTAL SAFETY</title><style>
+        :root {
+            --bg-dark: #080a09;
+            --bg-card: #101412;
+            --bg-card-hover: #161b18;
+            --border-color: rgba(197, 160, 89, 0.22);
+            --border-glow: rgba(197, 160, 89, 0.45);
+            --gold-primary: #c5a059;
+            --gold-light: #e5c889;
+            --gold-dark: #8c6d32;
+            --emerald-deep: #0a2218;
+            --emerald-accent: #1e4d38;
+            --text-main: #f0f2f1;
+            --text-muted: #a3b0a9;
+            --text-dim: #6c7a72;
+            --danger-color: #d9534f;
+            --warning-color: #f0ad4e;
+            --success-color: #5cb85c;
+            --font-header: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-arabic: 'Tajawal', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            font-size: 15px;
+            letter-spacing: 0.01em;
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* HEADER & BRAND BAR */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .brand-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed rgba(197, 160, 89, 0.15);
+        }
+
+        .brand-seal {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.15) 0%, rgba(10, 34, 24, 0.4) 100%);
+            border: 1px solid var(--gold-primary);
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        .doc-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .header-title-area {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .brand-logo-text {
+            font-family: var(--font-header);
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+        }
+
+        .brand-subhead {
+            font-family: var(--font-header);
+            font-size: 16px;
+            letter-spacing: 0.2em;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .manual-version-badge {
+            display: inline-block;
+            background: var(--emerald-deep);
+            color: var(--gold-light);
+            border: 1px solid var(--border-color);
+            padding: 4px 18px;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        /* BANNER */
+        .motto-banner {
+            background: linear-gradient(180deg, rgba(16, 20, 18, 0.9) 0%, rgba(10, 34, 24, 0.6) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 28px 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .motto-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 150px; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+        }
+
+        .heritage-tag {
+            font-size: 12px;
+            color: var(--gold-light);
+            letter-spacing: 0.12em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .hero-statement {
+            font-size: 15px;
+            color: var(--text-main);
+            max-width: 920px;
+            margin: 0 auto 16px auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .motto-quote {
+            font-family: var(--font-header);
+            font-size: 18px;
+            color: var(--gold-primary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding-top: 12px;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        /* GRID LAYOUTS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        /* CARDS & PANELS */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-glow);
+            background-color: var(--bg-card-hover);
+        }
+
+        .card-header-title {
+            font-family: var(--font-header);
+            font-size: 16px;
+            color: var(--gold-primary);
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge-pill {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .badge-gold { background: rgba(197, 160, 89, 0.15); color: var(--gold-light); border: 1px solid var(--border-color); }
+        .badge-emerald { background: rgba(30, 77, 56, 0.3); color: #5cb85c; border: 1px solid rgba(92, 184, 92, 0.3); }
+        .badge-danger { background: rgba(217, 83, 79, 0.2); color: #d9534f; border: 1px solid rgba(217, 83, 79, 0.4); }
+
+        /* SECTION HEADINGS */
+        .section-header {
+            margin: 48px 0 24px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0;
+            width: 80px; height: 2px;
+            background: var(--gold-primary);
+        }
+
+        .section-title {
+            font-family: var(--font-header);
+            font-size: 24px;
+            color: #ffffff;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+        }
+
+        /* DIAGRAM BOX */
+        .diagram-container {
+            background-color: #050706;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: var(--gold-light);
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.45;
+            margin: 20px 0;
+        }
+
+        /* CUSTOM TABLES */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 24px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: var(--emerald-deep);
+            color: var(--gold-light);
+            font-family: var(--font-header);
+            letter-spacing: 0.08em;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            color: var(--text-muted);
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(16, 20, 18, 0.5);
+        }
+
+        tr:hover {
+            background-color: rgba(197, 160, 89, 0.05);
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 80px;
+            padding: 32px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gold-primary);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .brand-logo-text { font-size: 26px; }
+            .section-title { font-size: 20px; }
+            .motto-banner { padding: 20px; }
+            .container { padding: 20px 16px; }
+        }
+    </style></head><body><div class="container">
+
+    <!-- HEADER BAR -->
+    <header>
+        <div class="brand-top-bar">
+            <div class="brand-seal">
+                <span>✦ Sealed Architectural &amp; Safety Standard</span>
+            </div>
+            <div class="doc-meta">
+                Ref: EXT-VAL-2026-005 | Flagship: Kempinski Hotel, Mall of the Emirates, Dubai
+            </div>
+        </div>
+
+        <div class="header-title-area">
+            <div class="brand-logo-text">You Wellness Clinic</div>
+            <div class="brand-subhead">Global Standard Franchise Manual</div>
+            <div class="manual-version-badge">V2.1.4 Elite Unified - Chapter 5: Architectural Specs, Facility Design &amp; Environmental Safety</div>
+        </div>
+    </header>
+
+    <!-- MOTTO BANNER -->
+    <section class="motto-banner">
+        <div class="heritage-tag">Global Healthcare Frameworks · Cleanroom Air Precision · Power &amp; Acoustic Engineering</div>
+        <p class="hero-statement">
+            Establishing cross-jurisdictional compliance, ISO cleanroom air quality, ultra-low EMF environmental safety, and zero-compromise acoustic isolation to deliver precision longevity infrastructure.
+        </p>
+        <div class="motto-quote">
+            "Backed by Data. Built for Complexity. Designed for You."
+        </div>
+    </section>
+
+    <!-- CHAPTER 5 MAIN CONTENT -->
+    <main>
+        <div class="section-header">
+            <h1 class="section-title">CHAPTER 5: ARCHITECTURAL SPECS, FACILITY DESIGN &amp; ENVIRONMENTAL SAFETY</h1>
+            <div class="section-subtitle">Unabridged Master Specifications · You Wellness Clinic Franchise Standard</div>
+        </div>
+
+        <!-- 5.0 GLOBAL CODES & PERSONA MAPPING -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                5.0 Global Building, Accessibility &amp; Healthcare Facility Codes Framework
+            </h2>
+            <div class="card" style="margin-bottom: 24px;">
+                <p style="margin-bottom: 12px;">
+                    To establish cross-jurisdictional operational validity, every You Wellness Clinic facility must comply with international and local building codes, healthcare facility regulations, and environmental standards. Where local standards conflict with HQ standards, the more stringent requirement shall apply.
+                </p>
+            </div>
+
+            <h3 style="font-family: var(--font-header); font-size: 15px; color: var(--gold-primary); margin-bottom: 12px;">
+                5.0.1 Mandatory Global Code Compliance Matrix
+            </h3>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Code / Regulatory Standard</th>
+                            <th>Jurisdiction / Scope</th>
+                            <th>Operational Application</th>
+                            <th>Franchise Non-Compliance Penalty</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>NFPA 99</strong> (Health Care Facilities Code)</td>
+                            <td>United States / Global Standard</td>
+                            <td>Health Care Facilities Code (Gas, Power, Emergency Systems, Fire Protection)</td>
+                            <td><span class="badge-pill badge-danger">Immediate Halt</span> Zone D &amp; E halt; $10,000/day fine</td>
+                        </tr>
+                        <tr>
+                            <td><strong>FGI Guidelines</strong> (Facility Guidelines Institute)</td>
+                            <td>US / International Benchmark</td>
+                            <td>Facility Design Standards for Outpatient Precision &amp; Specialty Healthcare</td>
+                            <td>Disqualification from global network registry; mandatory build-out order</td>
+                        </tr>
+                        <tr>
+                            <td><strong>EN 16798 &amp; EN 17210</strong></td>
+                            <td>European Union / International</td>
+                            <td>Indoor Air Quality/Ventilation (16798) &amp; Accessibility in Built Environment (17210)</td>
+                            <td>Direct suspension of operating license; 30-day cure window</td>
+                        </tr>
+                        <tr>
+                            <td><strong>GB 51039</strong></td>
+                            <td>People's Republic of China</td>
+                            <td>Architectural &amp; Technical Code for General Hospital/Clinic Facilities</td>
+                            <td>Immediate loss of NMPA/HGRAC approval; HQ Step-In triggered</td>
+                        </tr>
+                        <tr>
+                            <td><strong>NBC Part 4 &amp; NABH Standards</strong></td>
+                            <td>India / South Asia</td>
+                            <td>Fire &amp; Life Safety; NABH Infrastructure Guidelines for Outpatient Units</td>
+                            <td>Failure of accreditation; suspension of biological dispensing privileges</td>
+                        </tr>
+                        <tr>
+                            <td><strong>DHA / MOHAP Standards</strong></td>
+                            <td>United Arab Emirates / MENA</td>
+                            <td>Outpatient Facility Licensing, Day Surgery &amp; Specialized Longevity Clinic Standards</td>
+                            <td>Revocation of local clinical facility license; immediate flagship closure</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="font-family: var(--font-header); font-size: 15px; color: var(--gold-primary); margin-top: 32px; margin-bottom: 12px;">
+                5.0.2 Persona-to-Site Mapping Matrix
+            </h3>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Member / Patient Persona</th>
+                            <th>Target Facility Archetype</th>
+                            <th>Mandatory Spatial / Clinical Features</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Executive Longevity Optimizer</strong></td>
+                            <td>Urban Outpatient Hub</td>
+                            <td>Fast-track diagnostic bay, low-EMF work pods, express IV lounges</td>
+                        </tr>
+                        <tr>
+                            <td><strong>High-Net-Worth VIP / Celebrity</strong></td>
+                            <td>Flagship / Resort Shop-in-Shop</td>
+                            <td>Subterranean direct elevator access, non-visible VIP suite, 120-sec intake SOP</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Restorative / Chronic Recovery Member</strong></td>
+                            <td>Flagship / Destination Retreat</td>
+                            <td>Full Tier 3 biological suite, 1:1 RN care, extended stay recovery lounges</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 5.1 SITE SELECTION, ZONING & ACCESSIBILITY -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                5.1 Site Selection Matrix, Spatial Zoning &amp; Universal Accessibility
+            </h2>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-title">📏 5.1.1 Ceiling Height &amp; Structural Capacity</div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+                        <li style="margin-bottom: 8px;"><strong>Standard Clear Floor-to-Slab Height:</strong> Minimum 3.2 m required across Zone A (Reception), Zone C (Therapeutic Lounges), and Zone E (Admin).</li>
+                        <li style="margin-bottom: 8px;"><strong>Specialized High-Clearance Zones:</strong> Minimum 3.8 m required in Zone D (ISO Cleanroom) and Zone B (Heavy Diagnostic &amp; HBOT Suites) for HEPA plenums and heavy diagnostic mounts.</li>
+                        <li><strong>Floor Loading Capacity:</strong> Minimum 5.0 kN/m² in diagnostic (DEXA) and heavy device (HBOT/Cryo) zones; 3.5 kN/m² in standard clinical areas.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">♿ 5.1.2 Universal Accessibility Architecture</div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+                        <li style="margin-bottom: 6px;"><strong>Step-Free Transitions:</strong> Zero-threshold transitions with horizontal floor gaps ≤ 5 mm.</li>
+                        <li style="margin-bottom: 6px;"><strong>Universal Turning Radii:</strong> Minimum 1.5 m × 1.5 m unobstructed turning clearance in 100% of treatment suites, diagnostic cabins, and restrooms.</li>
+                        <li style="margin-bottom: 6px;"><strong>EN 17210 Washrooms:</strong> Sensor-driven accessible washrooms with motorized power-assist doors and dual emergency pull-cords.</li>
+                        <li><strong>Sensory Assist:</strong> Tactile braille signage at 1.4 m height; magnetic hearing loop induction arrays in Zone A and Zone C lounges.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3 style="font-family: var(--font-header); font-size: 16px; color: var(--gold-primary); margin-top: 24px; margin-bottom: 12px;">
+                5.1.3 Spatial Zoning Hierarchy (Zones A–E)
+            </h3>
+
+            <div class="diagram-container">
+| PRIVATE MEMBER ENTRANCE |
+            |
+            v
+| ZONE A: LUXURY RECEPTION & WAITING |
+| (Biophilic Acoustic Plenums, Circadian Lighting, Hearing Loops) |
+            |
+    +-------+-------+
+    |               |
+    v               v
++----------------------------------+   +----------------------------------+
+| ZONE B: DIAGNOSTIC & TELEMETRY   |   | ZONE C: PRECISION THERAPEUTICS   |
+| - Clear Height: 3.8m             |   | - Clear Height: 3.2m             |
+| - DEXA Suite / VO2 Max           | <=====> | - Tier 1/2/3 Treatment Suites |
+| - Biometric Testing Cabins       |   | - Wheelchair Turning Radius 1.5m |
++----------------------------------+   +----------------------------------+
+    ^               ^
+    |               |
+    +-------+-------+
+            |
+            v
+| ZONE D: PHARMACY, CLEANROOM & COLD-CHAIN STORAGE |
+| (Clear Height: 3.8m, ISO Class 5/7 HVAC, ISO 14644-1) |
+            ^
+            |
+| ZONE E: BACK-OF-HOUSE & UTILITY INFRASTRUCTURE |
+| (72-Hr Generator, Low-EMF Shielding, Water Micro-Filtration) |
+            </div>
+        </section>
+
+        <!-- 5.2 HVAC, CLEANROOM & SUSTAINABILITY -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                5.2 HVAC, Cleanroom &amp; Environmental Sustainability Architecture
+            </h2>
+
+            <h3 style="font-family: var(--font-header); font-size: 15px; color: var(--gold-primary); margin-bottom: 12px;">
+                5.2.1 Cleanroom Air Classification (ISO 14644-1)
+            </h3>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Cleanroom Zone</th>
+                            <th>ISO Classification</th>
+                            <th>Air Changes / Hr (ACH)</th>
+                            <th>Pressure Differential</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Primary Compounding Hoods</strong></td>
+                            <td>ISO Class 5 (Class 100)</td>
+                            <td>Continuous Laminar Flow</td>
+                            <td>Localized Laminar Air</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Buffer Preparation Room</strong></td>
+                            <td>ISO Class 7 (Class 10k)</td>
+                            <td>30 to 60 ACH</td>
+                            <td>+15 Pa vs. Ante-Room</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ante-Room / Gowning Suite</strong></td>
+                            <td>ISO Class 8 (Class 100k)</td>
+                            <td>20 to 30 ACH</td>
+                            <td>+10 Pa vs. Corridor</td>
+                        </tr>
+                        <tr>
+                            <td><strong>General Clinical Treatment</strong></td>
+                            <td>Standard Healthcare</td>
+                            <td>12 to 15 ACH</td>
+                            <td>Neutral / Balanced</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="grid-2" style="margin-top: 24px;">
+                <div class="card">
+                    <div class="card-header-title">🌿 5.2.2 Environmental Sustainability (LEED &amp; WELL)</div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+                        <li style="margin-bottom: 6px;"><strong>LEED &amp; WELL Gold Mandate:</strong> Achieve LEED Gold (v4.1 BD+C) and WELL Gold (v2) within 12 months of opening.</li>
+                        <li style="margin-bottom: 6px;"><strong>Low-EMF Shielding:</strong> Continuous rigid steel conduit (RMC) with twisted-pair wiring reducing low-frequency EMF to below 1.0 mG at recliner positions.</li>
+                        <li style="margin-bottom: 6px;"><strong>Whole-Facility Water Micro-Filtration:</strong> Multi-stage 0.2 µm bio-retention membrane, sub-micron carbon block, and UV-C loop delivering medical-grade water (TDS &lt; 10 ppm).</li>
+                        <li><strong>Zero-VOC Logs:</strong> Paints and sealants ≤ 5 g/L VOC; off-gassing validation confirming TVOC &lt; 300 µg/m³ prior to opening.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">🛡️ 5.2.3 VIP Infection-Control Micro-Specifications</div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+                        <li style="margin-bottom: 8px;"><strong>Touchless Fixtures:</strong> 100% sensor-actuated hardware across all water fixtures, doors, and sanitary stations in Zones A–D.</li>
+                        <li style="margin-bottom: 8px;"><strong>Antimicrobial Finishes:</strong> High-touch counters, grab bars, and door handles utilize EPA-registered antimicrobial copper-alloy (≥ 62% Cu) or non-porous solid surfaces.</li>
+                        <li><strong>Immunocompromised AHU Isolation:</strong> Dedicated negative-pressure air handling units with H14 HEPA filtration (≥ 99.995%) servicing VIP recovery suites.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5.3 COLD-CHAIN & ACOUSTIC PRIVACY -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                5.3 Cold-Chain Infrastructure &amp; Acoustic Privacy Legal Link
+            </h2>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-title">❄️ 5.3.1 Cold-Chain Monitoring &amp; Storage</div>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">
+                        <strong>Refrigerated Biologics (2 °C to 8 °C):</strong> Spark-free medical refrigerators with dual NIST-traceable continuous logging probes.<br>
+                        <strong>Ultra-Low Temp Freezers (−80 °C ULT):</strong> Dual-compressor cascade units for exosomes and transcriptomics, supported by CO₂ backup maintaining &lt; −60 °C for 48 hours during power loss.
+                    </p>
+                    <div class="diagram-container" style="font-size: 11px; margin-top: 10px;">
+COLD-CHAIN ALARM ESCALATION PROTOCOL
+1. REAL-TIME LOGGING: Dual NIST probes log temp every 60s via Spike API.
+2. TIER 1 ALERT (±1.5°C >5 mins): Visual/audible alarm at pharmacy desk.
+3. TIER 2 ALERT (±3.0°C >15 mins): Automated SMS/Call to Lead Pharmacist.
+4. TIER 3 ESCALATION (Temp >10°C or <-1°C): Secondary cooling engages;
+   Red-line lock engages on pharmacy door; HQ IoT alert triggered.
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">⚖️ 5.3.2 Acoustic Isolation &amp; Legal Enforcement</div>
+                    <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">
+                        Consultation suites, IV lounges, and diagnostic cabins require wall and ceiling assemblies certified to Sound Transmission Class (STC) ratings of ≥ 50 dB (≥ 55 dB for executive suites).
+                    </p>
+                    <div style="background: rgba(217, 83, 79, 0.1); border-left: 3px solid var(--danger-color); padding: 12px; border-radius: 4px; font-size: 12px; color: var(--text-main);">
+                        <strong>Legal Enforcement Clause:</strong> Conversational intelligibility outside room boundaries constitutes an unauthorized disclosure of Protected Health Information (PHI) under US HIPAA Security Rule (45 CFR § 164.530(c)) and EU GDPR Article 32. Failure triggers an immediate administrative cure order and mandatory acoustic retrofitting.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5.4 POWER, TELEMETRY & LIFE SAFETY -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                5.4 Power Resiliency, Low-Voltage Telemetry &amp; Next-Horizon Infrastructure
+            </h2>
+
+            <div class="card" style="margin-bottom: 24px;">
+                <div class="card-header-title">⚡ 5.4.1 Power Resiliency Architecture</div>
+                <div class="diagram-container">
+| MAINS UTILITY POWER (Primary 400V/230V Three-Phase) |
+            |
+            v
+| TIER 1: UNINTERRUPTIBLE POWER SUPPLY (UPS) SYSTEM |
+| - Double-conversion online UPS array (100 kVA minimum rating).
+| - Zero transfer time (0 ms switchover) for cleanrooms, ULT freezers, servers.
+| - Battery autonomy: Minimum 30 minutes at full facility load.
+            |
+            v
+| TIER 2: AUTOMATIC TRANSFER SWITCH (ATS) & EMERGENCY DIESEL GENERATOR |
+| - Dedicated 250 kVA sound-attenuated emergency diesel generator.
+| - Automatic start-up and load transfer within 8 seconds of mains failure.
+| - On-site fuel storage capacity: Minimum 72 hours continuous operation.
+                </div>
+            </div>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-title">🌐 5.4.2 Digital Twin &amp; Biophilic Loop</div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+                        <li style="margin-bottom: 6px;"><strong>BIM/IFC Handover:</strong> 3D BIM dataset in Revit and open IFC format at Level of Development 400 (LOD 400) delivered prior to handover.</li>
+                        <li style="margin-bottom: 6px;"><strong>Modular Partitions:</strong> Non-bearing, high-STC demountable acoustic wall systems in Zones B, C, and E for seamless re-configuration.</li>
+                        <li><strong>Biophilic Feedback Loop:</strong> Environmental sensors (CO₂, VOCs, light spectrum) transmit to Spike API, correlating indoor metrics with real-time member HRV and autonomic tone.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">🔥 5.4.3 Fire &amp; Life Safety (NFPA 101)</div>
+                    <ul style="font-size: 13px; color: var(--text-muted); padding-left: 18px; line-height: 1.7;">
+                        <li style="margin-bottom: 6px;"><strong>2-Hour Fire Isolation:</strong> Zone D (Cleanroom) and Zone E (Manifolds/Server Room) feature 2-hour fire-rated assemblies per NFPA 101.</li>
+                        <li style="margin-bottom: 6px;"><strong>Clean-Agent Suppression:</strong> Water-sensitive diagnostic and server infrastructure utilize FM-200 or Novec 1230 / FK-5-1-12 clean-agent fire suppression.</li>
+                        <li style="margin-bottom: 6px;"><strong>Stretcher Route:</strong> Minimum 1.8 m clear corridor width and 2.4 m elevator depth along egress pathways.</li>
+                        <li><strong>Quarterly Drills:</strong> Mandatory joint emergency drills conducted every 90 days with municipal fire/EMS.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5.5 AUDIT ENFORCEMENT MATRIX -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                5.5 Architectural Audit Enforcement Matrix (Domains A–E)
+            </h2>
+            <p style="font-size: 14px; color: var(--text-muted); margin-bottom: 20px;">
+                Full compliance with Chapter 5 standards is verified through a mandatory pre-opening architectural audit covering five specialized domains. Any Critical Defect prevents facility commissioning.
+            </p>
+
+            <h3 style="font-family: var(--font-header); font-size: 14px; color: var(--gold-primary); margin-bottom: 10px;">DOMAIN A: SPATIAL, ACCESSIBILITY &amp; GLOBAL CODES AUDIT</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Code</th>
+                            <th>Inspection Parameter</th>
+                            <th>Target Metric</th>
+                            <th>Compliance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>A-01</td><td>Clear floor-to-slab height (Zone D Cleanrooms &amp; Zone B)</td><td>≥ 3.8 Meters</td><td><span class="badge-pill badge-gold">Mandatory</span></td></tr>
+                        <tr><td>A-02</td><td>Clear floor-to-slab height (General Clinical Zones)</td><td>≥ 3.2 Meters</td><td><span class="badge-pill badge-gold">Mandatory</span></td></tr>
+                        <tr><td>A-03</td><td>Acoustic Isolation STC Rating (HIPAA/GDPR Compliance)</td><td>STC ≥ 50 / 55 dB</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>A-04</td><td>Universal Access (Step-free thresholds, turning radii)</td><td>EN 17210 / ADA 100%</td><td><span class="badge-pill badge-gold">Mandatory</span></td></tr>
+                        <tr><td>A-05</td><td>Global Building &amp; Healthcare Code Alignment</td><td>Local License / NFPA</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="font-family: var(--font-header); font-size: 14px; color: var(--gold-primary); margin-top: 24px; margin-bottom: 10px;">DOMAIN B: HVAC, CLEANROOM &amp; SUSTAINABILITY AUDIT</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Code</th>
+                            <th>Inspection Parameter</th>
+                            <th>Target Metric</th>
+                            <th>Compliance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>B-01</td><td>Cleanroom Particle Count (ISO 14644-1 Class 7 Buffer)</td><td>≤ 352,000 p/m³</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>B-02</td><td>Compounding Air Changes Per Hour (ACH)</td><td>≥ 30 ACH</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>B-03</td><td>Differential Pressure Gradient (Buffer vs. Ante-Room)</td><td>≥ +15 Pascals</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>B-04</td><td>LEED Gold / WELL Gold Target Compliance Verification</td><td>Certified / Pending</td><td><span class="badge-pill badge-gold">Mandatory</span></td></tr>
+                        <tr><td>B-05</td><td>Low-EMF Wiring Verification (Bed/Recliner Positions)</td><td>&lt; 1.0 mG</td><td><span class="badge-pill badge-gold">Mandatory</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="font-family: var(--font-header); font-size: 14px; color: var(--gold-primary); margin-top: 24px; margin-bottom: 10px;">DOMAIN C: COLD-CHAIN &amp; WATER INFRASTRUCTURE AUDIT</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Code</th>
+                            <th>Inspection Parameter</th>
+                            <th>Target Metric</th>
+                            <th>Compliance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>C-01</td><td>Standard Refrigerator Temp Stability (2°C–8°C)</td><td>Continuous 5°C ± 1°C</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>C-02</td><td>ULT Freezer Operational Stability</td><td>≤ −80°C ± 2°C</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>C-03</td><td>Dual-probe continuous logging via Spike API pipeline</td><td>100% Uptime Sync</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>C-04</td><td>Whole-Facility Water Micro-Filtration Output</td><td>TDS &lt; 10 ppm</td><td><span class="badge-pill badge-gold">Mandatory</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="font-family: var(--font-header); font-size: 14px; color: var(--gold-primary); margin-top: 24px; margin-bottom: 10px;">DOMAIN D: ELECTRICAL, POWER RESILIENCY &amp; LIFE SAFETY AUDIT</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Code</th>
+                            <th>Inspection Parameter</th>
+                            <th>Target Metric</th>
+                            <th>Compliance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>D-01</td><td>UPS zero-transfer switchover under blackout</td><td>0 ms Transfer</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>D-02</td><td>Emergency Diesel Generator start-up and load</td><td>≤ 8 Seconds</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>D-03</td><td>Emergency Generator fuel reserve duration</td><td>≥ 72 Hours Fuel</td><td><span class="badge-pill badge-gold">Mandatory</span></td></tr>
+                        <tr><td>D-04</td><td>Medical gas manifold switchover and alarm triggers</td><td>Automated Actuation</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>D-05</td><td>Fire-Rated Isolation (Zone D / Zone E, 2-hour assemblies)</td><td>NFPA 101 2-Hr Rated</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>D-06</td><td>Clean-Agent Fire Suppression (Zone B racks / Zone D)</td><td>FM-200 / Novec 1230</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>D-07</td><td>Evacuation Stretcher Route (1.8 m corridor / 2.4 m lift)</td><td>Verified Egress Path</td><td><span class="badge-pill badge-gold">Mandatory</span></td></tr>
+                        <tr><td>D-08</td><td>Quarterly Joint Drill with municipal fire/EMS authorities</td><td>Every 90 Days (log)</td><td><span class="badge-pill badge-gold">Mandatory</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="font-family: var(--font-header); font-size: 14px; color: var(--gold-primary); margin-top: 24px; margin-bottom: 10px;">DOMAIN E: DIGITAL TWIN, TELEMETRY &amp; IOT AUDIT</h3>
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item Code</th>
+                            <th>Inspection Parameter</th>
+                            <th>Target Metric</th>
+                            <th>Compliance</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>E-01</td><td>Digital Twin BIM LOD 400 IFC Model Handover</td><td>100% Validated File</td><td><span class="badge-pill badge-gold">Mandatory</span></td></tr>
+                        <tr><td>E-02</td><td>Isolated Medical Device VLAN segmentation</td><td>VLAN 20 Isolated</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>E-03</td><td>Ambient Environmental Sensor Integration (Spike API)</td><td>Live Stream Active</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                        <tr><td>E-04</td><td>Physical server security and biometric access logging</td><td>100% Audit Logging</td><td><span class="badge-pill badge-danger">Critical</span></td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="card" style="margin-top: 24px;">
+                <div class="card-header-title">⚠️ 5.5.1 Domain-Specific Cure Periods &amp; Penalty Restoration</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">
+                    <strong>Critical Safety / Environmental Failure:</strong> (e.g., Cleanroom pressure drop, cold-chain breach): Immediate 24-hour cure window; failure to resolve triggers automated EHR lockdown of the affected zone.
+                </p>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 10px;">
+                    <strong>Standard Facility Non-Compliance:</strong> (e.g., sound isolation drift, finish wear): 14-day cure window with mandatory weekly photographic/telemetry re-inspection.
+                </p>
+                <p style="font-size: 13px; color: var(--gold-light);">
+                    <strong>Financial Consequences:</strong> Failure to cure within the allotted window incurs an automated $2,500/day fine and triggers HQ Step-In Rights.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.youclinic.co" target="_blank">Official Website</a>
+            <span>•</span>
+            <a href="#">Kempinski Hotel Flagship</a>
+            <span>•</span>
+            <a href="#">Architectural Governance</a>
+        </div>
+        <div>
+            © 2026 YOU WELLNESS CLINIC. All rights reserved. Global Standard Franchise Manual V2.1.4 Elite Unified.<br>
+            Architectural Specifications, Facility Design &amp; Environmental Safety.
+        </div>
+    </footer>
+
+</div></body></html>

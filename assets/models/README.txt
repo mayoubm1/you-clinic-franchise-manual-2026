@@ -1,0 +1,1 @@
+﻿Drop .gltf/.glb as-built facility models here. When present, the interactive viewer loads them automatically; otherwise it shows the procedural mock-up tower. Reference them in a chapter as: data-gltf-src='assets/models/filename.gltf'

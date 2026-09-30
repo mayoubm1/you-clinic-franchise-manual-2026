@@ -1,0 +1,684 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>CHAPTER 7: CLINICAL SOPs, COLD-CHAIN, QMS &amp; EMERGENCY RESPONSE</title><style>
+        :root {
+            --bg-dark: #080a09;
+            --bg-card: #101412;
+            --bg-card-hover: #161b18;
+            --border-color: rgba(197, 160, 89, 0.22);
+            --border-glow: rgba(197, 160, 89, 0.45);
+            --gold-primary: #c5a059;
+            --gold-light: #e5c889;
+            --gold-dark: #8c6d32;
+            --emerald-deep: #0a2218;
+            --emerald-accent: #1e4d38;
+            --text-main: #f0f2f1;
+            --text-muted: #a3b0a9;
+            --text-dim: #6c7a72;
+            --danger-color: #d9534f;
+            --warning-color: #f0ad4e;
+            --success-color: #5cb85c;
+            --font-header: 'Cinzel', serif;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-arabic: 'Tajawal', sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            font-family: var(--font-body);
+            line-height: 1.7;
+            font-size: 15px;
+            letter-spacing: 0.01em;
+            padding: 0;
+            margin: 0;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 24px;
+        }
+
+        /* HEADER & BRAND BAR */
+        header {
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 32px;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .brand-top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 1px dashed rgba(197, 160, 89, 0.15);
+        }
+
+        .brand-seal {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, rgba(197, 160, 89, 0.15) 0%, rgba(10, 34, 24, 0.4) 100%);
+            border: 1px solid var(--gold-primary);
+            padding: 6px 16px;
+            border-radius: 4px;
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            font-weight: 600;
+        }
+
+        .doc-meta {
+            font-size: 12px;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .header-title-area {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .brand-logo-text {
+            font-family: var(--font-header);
+            font-size: 38px;
+            font-weight: 700;
+            letter-spacing: 0.25em;
+            color: #ffffff;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            text-shadow: 0 0 20px rgba(197, 160, 89, 0.2);
+        }
+
+        .brand-subhead {
+            font-family: var(--font-header);
+            font-size: 16px;
+            letter-spacing: 0.2em;
+            color: var(--gold-primary);
+            text-transform: uppercase;
+            margin-bottom: 16px;
+        }
+
+        .manual-version-badge {
+            display: inline-block;
+            background: var(--emerald-deep);
+            color: var(--gold-light);
+            border: 1px solid var(--border-color);
+            padding: 4px 18px;
+            font-size: 12px;
+            letter-spacing: 0.12em;
+            border-radius: 20px;
+            text-transform: uppercase;
+        }
+
+        /* BANNER */
+        .motto-banner {
+            background: linear-gradient(180deg, rgba(16, 20, 18, 0.9) 0%, rgba(10, 34, 24, 0.6) 100%);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 28px 32px;
+            margin-bottom: 40px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .motto-banner::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 150px; height: 2px;
+            background: linear-gradient(90deg, transparent, var(--gold-primary), transparent);
+        }
+
+        .heritage-tag {
+            font-size: 12px;
+            color: var(--gold-light);
+            letter-spacing: 0.12em;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .hero-statement {
+            font-size: 15px;
+            color: var(--text-main);
+            max-width: 920px;
+            margin: 0 auto 16px auto;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+
+        .motto-quote {
+            font-family: var(--font-header);
+            font-size: 18px;
+            color: var(--gold-primary);
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding-top: 12px;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        /* GRID LAYOUTS */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        /* CARDS & PANELS */
+        .card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 24px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            border-color: var(--border-glow);
+            background-color: var(--bg-card-hover);
+        }
+
+        .card-header-title {
+            font-family: var(--font-header);
+            font-size: 16px;
+            color: var(--gold-primary);
+            letter-spacing: 0.08em;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .badge-pill {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            padding: 3px 10px;
+            border-radius: 3px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+
+        .badge-gold { background: rgba(197, 160, 89, 0.15); color: var(--gold-light); border: 1px solid var(--border-color); }
+        .badge-emerald { background: rgba(30, 77, 56, 0.3); color: #5cb85c; border: 1px solid rgba(92, 184, 92, 0.3); }
+        .badge-danger { background: rgba(217, 83, 79, 0.2); color: #d9534f; border: 1px solid rgba(217, 83, 79, 0.4); }
+
+        /* SECTION HEADINGS */
+        .section-header {
+            margin: 48px 0 24px 0;
+            padding-bottom: 12px;
+            border-bottom: 1px solid var(--border-color);
+            position: relative;
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -1px; left: 0;
+            width: 80px; height: 2px;
+            background: var(--gold-primary);
+        }
+
+        .section-title {
+            font-family: var(--font-header);
+            font-size: 24px;
+            color: #ffffff;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .section-subtitle {
+            font-size: 13px;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+            margin-top: 4px;
+        }
+
+        /* DIAGRAM BOX */
+        .diagram-container {
+            background-color: #050706;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 20px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 13px;
+            color: var(--gold-light);
+            overflow-x: auto;
+            white-space: pre;
+            line-height: 1.45;
+            margin: 20px 0;
+        }
+
+        /* CUSTOM TABLES */
+        .table-responsive {
+            width: 100%;
+            overflow-x: auto;
+            margin: 24px 0;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 13px;
+        }
+
+        th {
+            background-color: var(--emerald-deep);
+            color: var(--gold-light);
+            font-family: var(--font-header);
+            letter-spacing: 0.08em;
+            padding: 14px 16px;
+            border-bottom: 1px solid var(--border-color);
+            text-transform: uppercase;
+            font-size: 12px;
+        }
+
+        td {
+            padding: 14px 16px;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            color: var(--text-muted);
+            vertical-align: top;
+        }
+
+        tr:nth-child(even) {
+            background-color: rgba(16, 20, 18, 0.5);
+        }
+
+        tr:hover {
+            background-color: rgba(197, 160, 89, 0.05);
+        }
+
+        /* FOOTER */
+        footer {
+            margin-top: 80px;
+            padding: 32px 0;
+            border-top: 1px solid var(--border-color);
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-dim);
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--gold-primary);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .brand-logo-text { font-size: 26px; }
+            .section-title { font-size: 20px; }
+            .motto-banner { padding: 20px; }
+            .container { padding: 20px 16px; }
+        }
+    </style></head><body><div class="container">
+
+    <!-- HEADER BAR -->
+    <header>
+        <div class="brand-top-bar">
+            <div class="brand-seal">
+                <span>✦ Sealed Operational &amp; Quality Management Standard</span>
+            </div>
+            <div class="doc-meta">
+                Ref: EXT-VAL-2026-007 | Flagship: Kempinski Hotel, Mall of the Emirates, Dubai
+            </div>
+        </div>
+
+        <div class="header-title-area">
+            <div class="brand-logo-text">You Wellness Clinic</div>
+            <div class="brand-subhead">Global Standard Franchise Manual</div>
+            <div class="manual-version-badge">V2.1.4 Elite Unified - Chapter 7: Clinical SOPs, Cold-Chain, QMS &amp; Emergency Response</div>
+        </div>
+    </header>
+
+    <!-- MOTTO BANNER -->
+    <section class="motto-banner">
+        <div class="heritage-tag">Daily Interlocks · Cold-Chain Telemetry · QMS &amp; Adverse Event Escalation · Audit Scorecard · Code Blue</div>
+        <p class="hero-statement">
+            Governing daily operational execution, cleanroom HVAC verification, cold-chain telemetry integrity, continuous clinical quality management, cryptographic batch recalls, multi-tier audits, and life-safety crisis response protocols.
+        </p>
+        <div class="motto-quote">
+            "Backed by Data. Built for Complexity. Designed for You."
+        </div>
+    </section>
+
+    <!-- CHAPTER 7 MAIN CONTENT -->
+    <main>
+        <div class="section-header">
+            <h1 class="section-title">CHAPTER 7: CLINICAL SOPs, COLD-CHAIN, QMS &amp; EMERGENCY RESPONSE</h1>
+            <div class="section-subtitle">Operational Governance &amp; Quality Assurance · You Wellness Clinic Franchise Standard</div>
+        </div>
+
+        <!-- 7.0 CHAPTER OVERVIEW -->
+        <section style="margin-bottom: 40px;">
+            <div class="card">
+                <div class="card-header-title">🏛️ 7.0 Chapter Overview &amp; Executive Operational Governance</div>
+                <p style="font-size: 13px; color: var(--text-muted); line-height: 1.8;">
+                    Chapter 7 governs the daily operational execution, human capital standards, continuous clinical quality management, and crisis control protocols for every You Wellness Clinic facility. Operational integrity directly dictates clinical safety and legal defensibility. All franchise facilities must execute operations within the unified digital interlock architecture established in Chapter 3, the infrastructure baselines of Chapter 5, and the medical protocols of Chapter 6.
+                </p>
+            </div>
+        </section>
+
+        <!-- 7.1 OPERATIONAL GOVERNANCE & DAILY WORKFLOW INTERLOCKS -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                7.1 Operational Governance &amp; Daily Workflow Interlocks
+            </h2>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 20px;">
+                Daily operations follow an automated, software-verified sequence tied to Electronic Health Record (EHR) permissions and IoT telemetry from the Spike API.
+            </p>
+
+            <h3 style="font-family: var(--font-header); font-size: 15px; color: var(--gold-primary); margin-bottom: 12px;">
+                7.1.1 Daily Pre-Opening Verification Protocol (07:00 – 08:00)
+            </h3>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-title">🌬️ Cleanroom &amp; HVAC Interlock</div>
+                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7;">
+                        Spike API polls cleanroom sensors in Zone D. Differential pressure must verify at <strong>≥ +15 Pa</strong> (Buffer vs. Ante-Room) and particle counts must satisfy ISO 14644-1 Class 7 metrics (<strong>≤ 352,000 particles/m³</strong> at 0.5 μm). If HVAC metrics fail, the EHR automatically locks compounding dispensing functions and issues a Tier 1 alert.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">❄️ Cold-Chain Telemetry Interlock</div>
+                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7;">
+                        Audits 24-hour temperature logs for Refrigerator (<strong>2 °C to 8 °C</strong>) and Ultra-Low Temperature (ULT) Freezer (<strong>−80 °C</strong>). Any un-cleared temperature excursion automatically flags affected inventory batches as <strong>"Quarantined"</strong> in the EHR compounding module.
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">🛠️ Medical Device Pre-Flight Self-Diagnostics</div>
+                    <ul style="font-size: 12px; color: var(--text-muted); padding-left: 16px; line-height: 1.7;">
+                        <li style="margin-bottom: 6px;"><strong>HBOT Systems:</strong> Automated pressure vessel seal check, exhaust valve cycle test, and ambient O₂ sensor calibration (20.9% ± 0.2%).</li>
+                        <li style="margin-bottom: 6px;"><strong>Cryotherapy Units:</strong> LN₂ supply line pressure test, emergency exhaust ventilation cycle, and primary/secondary ambient O₂ interlock test (&gt; 19.5% O₂).</li>
+                        <li><strong>Diagnostic Systems:</strong> DEXA phantom calibration scan and VO2 Max gas analyzer 2-point calibration.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">🔐 EHR Operational Unlock</div>
+                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7;">
+                        Upon successful completion of all diagnostic tests, the Local Medical Director or Lead Pharmacist executes a cryptographic sign-off in the EHR, officially opening the facility's clinical schedule for the day.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid-2" style="margin-top: 24px;">
+                <div class="card">
+                    <div class="card-header-title">📋 7.1.2 Shift Handover &amp; Clinical Huddle SOP</div>
+                    <div class="badge-pill badge-gold">Mandatory Briefing (08:00 – 08:15)</div>
+                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-top: 8px;">
+                        The Local Medical Director, Lead Pharmacist, Head Nurse, and Lead CHT conduct a mandatory 15-minute briefing.
+                    </p>
+                    <p style="font-size: 12px; color: var(--gold-light); margin-top: 8px;"><strong>Agenda Items:</strong></p>
+                    <ul style="font-size: 12px; color: var(--text-muted); padding-left: 16px; line-height: 1.6;">
+                        <li>Review high-dose Tier 2 &amp; Tier 3 scheduled appointments.</li>
+                        <li>Monitor open 30-day EHR re-testing cure windows.</li>
+                        <li>Confirm batch IDs for biological preparations.</li>
+                        <li>Verify individual patient contraindication flags.</li>
+                    </ul>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">☣️ 7.1.3 Facility Lockdown &amp; Waste Manifest SOP</div>
+                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7;">
+                        <strong>Cleanroom Decontamination:</strong> Mandatory 45-minute automated UV-C surface sterilization cycle in Zone D preparation and buffer suites, logged via environmental sensors.
+                    </p>
+                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-top: 8px;">
+                        <strong>Biological Waste Manifest:</strong> All sharps, expired biologics, blood-contaminated consumables, and residual pharmaceutical waste processed under chain-of-custody protocols. Waste manifests are assigned a unique tracking ID and logged into EHR.
+                    </p>
+                    <div style="background: rgba(197, 160, 89, 0.1); border: 1px solid var(--border-color); padding: 8px 12px; border-radius: 4px; margin-top: 10px; font-size: 11px; color: var(--gold-light);">
+                        <strong>Mandatory Retention:</strong> Biohazard disposal manifests and destruction certificates must be retained in digital EHR storage for a minimum of <strong>7 years</strong> (US FDA, EPA, EU EMA, UAE MOHAP compliance).
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7.2 QUALITY MANAGEMENT SYSTEM (QMS) & ADVERSE EVENTS -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                7.2 Quality Management System (QMS), Pharmacovigilance &amp; Adverse Event SOPs
+            </h2>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                The Quality Management System (QMS) tracks operational performance, monitors therapeutic outcomes, and mitigates clinical risks across the franchise network.
+            </p>
+
+            <h3 style="font-family: var(--font-header); font-size: 15px; color: var(--gold-primary); margin-bottom: 12px;">
+                7.2.1 Pharmacovigilance &amp; Adverse Event (AE) Escalation Pipeline
+            </h3>
+
+            <div class="diagram-container">
+PHARMACOVIGILANCE & ADVERSE EVENT (AE) ESCALATION PIPELINE
+
+1. REAL-TIME EVENT LOGGING:
+   Any adverse patient reaction must be entered into the EHR adverse event module
+   within 15 MINUTES of occurrence by the attending RN or Physician.
+
+2. ADVERSE EVENT CLASSIFICATION & ACTION TIERS:
+   ├─ MINOR ADVERSE EVENT (Class I): Localized rash, mild headache, vasovagal lightheadedness.
+   │  └─► Action: Documented in EHR; monitored for 30 mins; reviewed in monthly QMS.
+   │
+   ├─ MODERATE ADVERSE EVENT (Class II): Persistent vomiting, moderate hypotension, urticaria, rigors.
+   │  └─► Action: Immediate Medical Director intervention; therapeutic counter-agent administered;
+   │         EHR logs 24-hour follow-up requirement.
+   │
+   └─ SEVERE ADVERSE EVENT (SAE - Class III): Anaphylaxis, severe bronchospasm, arrhythmia,
+      thromboembolic event, severe barotrauma, Tier 3 biologic infection.
+      └─► Action: Emergency resuscitation/EMS transfer; EHR auto-issues alert to HQ
+             Pharmacovigilance within 1 HOUR.
+
+3. ROOT CAUSE ANALYSIS (RCA):
+   Mandatory 5-Why and Fishbone RCA report compiled by Medical Director and submitted
+   to HQ Safety Board within 48 HOURS.
+
+4. BATCH LOCKOUT:
+   Automatic EHR freeze on compound/biologic batch ID across local facility.
+            </div>
+
+            <div class="card" style="margin-top: 24px;">
+                <div class="card-header-title">🛡️️ 7.2.2 Cryptographic Batch Recall &amp; EHR Interlock</div>
+                <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 12px;">
+                    If HQ Pharmacovigilance determines that a compounded product, peptide lot, exosome batch, or diagnostic reagent is compromised:
+                </p>
+                <div class="grid-3">
+                    <div style="background: rgba(16, 20, 18, 0.8); border: 1px solid var(--border-color); padding: 14px; border-radius: 4px;">
+                        <span class="badge-pill badge-gold">Network Execution</span>
+                        <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+                            HQ issues a cryptographic Batch Recall Order via the central EHR system.
+                        </p>
+                    </div>
+                    <div style="background: rgba(16, 20, 18, 0.8); border: 1px solid var(--border-color); padding: 14px; border-radius: 4px;">
+                        <span class="badge-pill badge-emerald">5-Second Automated Interlock</span>
+                        <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+                            Within 5 seconds of issuance, the batch ID is flagged as RECALLED across every facility network-wide.
+                        </p>
+                    </div>
+                    <div style="background: rgba(16, 20, 18, 0.8); border: 1px solid var(--border-color); padding: 14px; border-radius: 4px;">
+                        <span class="badge-pill badge-danger">Point-of-Care Hard Stop</span>
+                        <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6;">
+                            If scanned/selected, EHR displays a red warning screen and locks the dispensing interface.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7.3 MULTI-TIER FRANCHISE AUDIT SCORECARD -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                7.3 Multi-Tier Franchise Audit Scorecard &amp; Enforcement Actions
+            </h2>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                HQ conducts unannounced operational, structural, and clinical audits every quarter using a standardized 1,000-point scoring framework.
+            </p>
+
+            <h3 style="font-family: var(--font-header); font-size: 15px; color: var(--gold-primary); margin-bottom: 12px;">
+                7.3.1 Audit Domain Weighting Matrix
+            </h3>
+
+            <div class="table-responsive">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Audit Domain</th>
+                            <th>Key Inspection Metrics</th>
+                            <th>Weight / Compliance Threshold</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Domain A: Clinical Governance &amp; Safety</strong></td>
+                            <td>Protocol triage accuracy, Consent Forms A/B/C completion, EHR interlock overrides, contraindication verification</td>
+                            <td><strong>25% Weight (250 Points)</strong><br><span class="badge-pill badge-danger">Critical: 100% compliance required on Tier 3 &amp; Dosing Caps</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Domain B: Facility, HVAC &amp; Cold-Chain</strong></td>
+                            <td>Cleanroom ISO particle counts, pressure cascades, cold-chain logs, low-EMF, water micro-filtration TDS levels</td>
+                            <td><strong>20% Weight (200 Points)</strong><br><span class="badge-pill badge-danger">Critical: 100% compliance required on HVAC &amp; ULT storage</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Domain C: Staff Credentials &amp; Training</strong></td>
+                            <td>License validity, ACLS active status, You Academy completion, drill logs, adverse event reporting speed</td>
+                            <td><strong>20% Weight (200 Points)</strong><br><span class="badge-pill badge-gold">Mandatory: Zero expired credentials permitted</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Domain D: Brand, Marketing &amp; Ethics</strong></td>
+                            <td>Approved language compliance, 24-hr withdrawal rule adherence, member ratings, facility cleanliness</td>
+                            <td><strong>20% Weight (200 Points)</strong><br><span class="badge-pill badge-danger">Critical: Zero prohibited claims in public channels</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong>Domain E: IT, Telemetry &amp; Security</strong></td>
+                            <td>Spike API stream health, VLAN 20 isolation, zero-trust server access logs, BIM LOD 400 digital twin updates</td>
+                            <td><strong>15% Weight (150 Points)</strong><br><span class="badge-pill badge-gold">Mandatory: 100% sensor stream uptime</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3 style="font-family: var(--font-header); font-size: 15px; color: var(--gold-primary); margin-top: 32px; margin-bottom: 12px;">
+                7.3.2 Audit Scoring Tiers &amp; Mandatory Enforcement Actions
+            </h3>
+
+            <div class="grid-2">
+                <div class="card" style="border-left: 4px solid #5cb85c;">
+                    <div class="card-header-title" style="color: #5cb85c;">🏆 TIER S: EXCELLENCE STANDARD</div>
+                    <div class="badge-pill badge-emerald">Score: 950 – 1,000 Points / ≥ 95%</div>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.6;">
+                        <strong>Operational Status:</strong> Full operational authorization.<br>
+                        <strong>Franchise Action:</strong> Eligible for annual network royalty reductions and priority territory expansion.
+                    </p>
+                </div>
+
+                <div class="card" style="border-left: 4px solid var(--gold-primary);">
+                    <div class="card-header-title" style="color: var(--gold-primary);">✅ TIER A: COMPLIANT STANDARD</div>
+                    <div class="badge-pill badge-gold">Score: 850 – 949 Points / 85% – 94%</div>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.6;">
+                        <strong>Operational Status:</strong> Certified for standard operation.<br>
+                        <strong>Franchise Action:</strong> Minor non-compliances must be remediated via internal action plan within 14 calendar days.
+                    </p>
+                </div>
+
+                <div class="card" style="border-left: 4px solid var(--warning-color);">
+                    <div class="card-header-title" style="color: var(--warning-color);">⚠️ TIER B: CONDITIONAL CURE STATUS</div>
+                    <div class="badge-pill badge-gold" style="background: rgba(240, 173, 78, 0.2); color: var(--warning-color); border-color: var(--warning-color);">Score: 700 – 849 Points / 70% – 84%</div>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.6;">
+                        <strong>Operational Status:</strong> Notice of Deficiency issued; elevated supervisory status.<br>
+                        <strong>Franchise Action:</strong> Mandatory 30-day cure window initiated with weekly remote HQ monitoring. EHR restricts onboarding of new members for Tier 3 biological protocols until cured.
+                    </p>
+                </div>
+
+                <div class="card" style="border-left: 4px solid var(--danger-color);">
+                    <div class="card-header-title" style="color: var(--danger-color);">🚫 TIER C: OPERATIONAL FAILURE</div>
+                    <div class="badge-pill badge-danger">Score: &lt; 700 Points OR Unremediated Safety Breach</div>
+                    <p style="font-size: 12px; color: var(--text-muted); margin-top: 8px; line-height: 1.6;">
+                        <strong>Operational Status:</strong> Immediate suspension of franchise operating license.<br>
+                        <strong>Franchise Action:</strong> EHR prescribing capabilities frozen globally; facility doors locked to clinical traffic; HQ Step-In Rights triggered immediately.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7.4 EMERGENCY RESPONSE & MEDICAL CRISIS PROTOCOLS -->
+        <section style="margin-bottom: 40px;">
+            <h2 style="font-family: var(--font-header); font-size: 18px; color: var(--gold-light); margin-bottom: 12px;">
+                7.4 Emergency Response &amp; Medical Crisis Protocols
+            </h2>
+            <p style="font-size: 13px; color: var(--text-muted); margin-bottom: 16px;">
+                Emergency response protocols ensure immediate life-safety intervention across all spatial zones.
+            </p>
+
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-header-title">🚨 7.4.1 Code Blue Protocol</div>
+                    <div class="badge-pill badge-danger">Clinical Lounges &amp; Treatment Suites</div>
+                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-top: 8px;">
+                        <strong>30-Second Access Rule:</strong> Dedicated emergency crash carts equipped with an Automated External Defibrillator (AED), bag-valve-mask (BVM) ventilation, advanced airway kits, first-line IV emergency medications (epinephrine, atropine, amiodarone), and supplemental oxygen must be positioned within a 30-second walking radius of any clinical seat or treatment bed.
+                    </p>
+                    <p style="font-size: 13px; color: var(--text-muted); line-height: 1.7; margin-top: 8px;">
+                        <strong>Direct EMS Interlock:</strong> Nurse stations in Zone C and Zone E must feature a dedicated, hardwired emergency phone line programmed for direct 1-touch connection to local Emergency Medical Services (EMS).
+                    </p>
+                </div>
+
+                <div class="card">
+                    <div class="card-header-title">🔥 7.4.2 Ambient Gas Monitoring &amp; Fire Safety</div>
+                    <div class="badge-pill badge-gold">NFPA 99 Alignment</div>
+                    <p style="font-size: 12px; color: var(--text-muted); line-height: 1.6; margin-top: 8px;">
+                        Continuous dual ambient O₂ sensors installed in Zone B (HBOT/Cryo), Zone D (Cleanroom), and Zone E (Gas Manifolds):
+                    </p>
+                    <ul style="font-size: 12px; color: var(--text-muted); padding-left: 16px; line-height: 1.6; margin-top: 6px;">
+                        <li style="margin-bottom: 6px;"><strong>Depletion Trigger (O₂ &lt; 19.5%):</strong> Activates visual/audible alarms, cuts off LN₂ and O₂ main valves, engages 100% outdoor air purge ventilation.</li>
+                        <li style="margin-bottom: 6px;"><strong>Enrichment Trigger (O₂ &gt; 23.5%):</strong> Triggers local alarms, isolates hyperbaric feed systems, shuts down high-voltage circuits in affected zone.</li>
+                        <li><strong>Gas Manifold Safety:</strong> Automatic reserve switchover engages if primary O₂ pressure drops below 50 PSI, issuing a Tier 1 alert at pharmacy desk and nurse station.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-links">
+            <a href="https://www.youclinic.co" target="_blank">Official Website</a>
+            <span>•</span>
+            <a href="#">Kempinski Hotel Flagship</a>
+            <span>•</span>
+            <a href="#">Clinical &amp; Medical Governance</a>
+        </div>
+        <div>
+            © 2026 YOU WELLNESS CLINIC. All rights reserved. Global Standard Franchise Manual V2.1.4 Elite Unified.<br>
+            Clinical SOPs, Cold-Chain, QMS &amp; Emergency Response.
+        </div>
+    </footer>
+
+</div></body></html>
