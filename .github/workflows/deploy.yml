@@ -36,6 +36,25 @@ jobs:
       - name: Compile manual (build.js -> build_portal.py)
         run: node build.js
 
+      # --- Quality gates (before anything reaches production) ---
+      # Lint all generated HTML. Config lives in .htmlhintrc (ASCII diagram
+      # arrows `-->` / `<====>` are deliberately allowed via spec-char-escape:false).
+      - name: Lint generated HTML
+        run: npx --yes htmlhint "**/*.html"
+
+      # Deterministic internal link check: fails on any missing local asset.
+      # The optional as-built .gltf model is reported as informational (procedural
+      # fallback is shown until a real model is added).
+      - name: Check internal links
+        run: python tools/check_links.py
+
+      # External link check (the only external reference is the brand site).
+      - name: Check external links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --no-progress --exclude facility-as-built\.gltf '**/*.html'
+          fail: true
+
       - name: Upload artifact for GitHub Pages
         uses: actions/upload-pages-artifact@v3
         with:
